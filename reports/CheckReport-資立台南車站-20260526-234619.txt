@@ -1,0 +1,11 @@
+﻿================================
+NFA Auto Install Report
+================================
+
+Computer Name : 資立台南車站
+User Name     : admin
+Windows       : Microsoft Windows 11 家用版
+Domain        : WORKGROUP
+Report Time   : 2026-05-26 23:46:19
+
+Report generated successfully.

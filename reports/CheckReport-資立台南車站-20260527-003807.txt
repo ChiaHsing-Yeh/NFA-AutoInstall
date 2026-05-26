@@ -1,0 +1,62 @@
+﻿================================
+NFA Auto Install Report
+================================
+
+Computer Name : 資立台南車站
+User Name     : admin
+Windows       : Microsoft Windows 11 家用版
+Domain        : WORKGROUP
+Report Time   : 2026-05-27 00:38:08
+
+=========================
+Domain Check
+=========================
+[NG] Domain: WORKGROUP
+Expected: nfa.gov.tw
+
+=========================
+User Check
+=========================
+[NG] User: admin
+Expected: User
+
+=========================
+Printer Check
+=========================
+[OK] Microsoft Print to PDF
+[NG] Printer01
+[NG] Printer02
+[NG] Printer03
+[NG] Printer04
+[NG] Printer05
+
+=========================
+Software Check
+=========================
+[OK] Google Chrome
+[OK] LINE
+[NG] VLC media player
+[NG] Webex
+[NG] OpenOffice
+
+=========================
+Office Check
+=========================
+[OK] Access
+[NG] Excel
+[OK] OneNote
+[OK] Outlook
+[NG] PowerPoint
+[NG] Publisher
+[NG] Word
+
+=========================
+Trend Micro Check
+=========================
+[NG] Trend Micro Apex One Security Agent
+[NG] Security Agent
+[NG] Trend Vision One Endpoint Security
+
+================================
+Report generated successfully.
+================================

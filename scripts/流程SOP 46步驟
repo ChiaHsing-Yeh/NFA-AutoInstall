@@ -1,0 +1,357 @@
+Dell 筆電大量建置 SOP
+
+【一、Windows 初始設定】
+
+1. 開機進入 Windows 初始設定畫面。
+
+2. 按下：
+Shift + Fn + F10
+
+開啟命令提示字元。
+
+3. 輸入：
+
+OOBE\BYPASSNRO
+
+按 Enter 執行。
+
+執行完成後，手動點選【重新啟動（Restart）】讓電腦重新開機。
+
+4. 國家或地區選擇：
+
+台灣
+
+點選【是】。
+
+5. 鍵盤配置選擇：
+
+微軟注音
+
+點選【是】。
+
+6. 新增第二種鍵盤配置時，選擇：
+
+跳過
+
+7. 網路連線畫面選擇：
+
+我沒有網路
+
+
+【二、建立本機帳戶】
+
+8. Microsoft 授權條款畫面：
+
+點選【接受】。
+
+9. 在「請輸入您的姓名」欄位輸入：
+
+User
+
+點選【下一步】。
+
+10. 密碼欄位不用輸入任何內容。
+
+直接點選【下一步】。
+
+11. 將下列項目全部改成【否】：
+
+位置
+尋找我的裝置
+診斷資料
+包含選用
+手寫筆跡與鍵入
+量身打造的體驗
+廣告識別碼
+
+完成後點選【接受】。
+
+12. Dell 裝置註冊畫面：
+
+不用輸入任何資料。
+
+直接點選【下一步】。
+
+13. Dell 隱私權與遙測通知畫面：
+
+「我已閱讀並同意 Dell 的隱私權政策和遙測通知」
+
+不要勾選。
+
+直接點選【下一步】。
+
+14. 等待系統完成初始化。
+
+15. 成功進入 Windows 桌面。
+
+
+【三、連線公司 Wi-Fi】
+
+16. 連線 Wi-Fi：
+
+SSID：
+NFA
+
+密碼：
+mic23123911
+
+輸入後點選【下一步】。
+
+
+【四、加入公司網域】
+
+17. 進入：
+
+設定
+→ 系統
+→ 系統資訊
+
+18. 點擊：
+
+網域或工作群組
+
+19. 在系統內容畫面中點選：
+
+變更
+
+20. 在「成員隸屬」中：
+
+選擇【網域(D)】
+
+輸入：
+
+nfa.gov.tw
+
+點選【確定】。
+
+21. 輸入：
+
+使用者名稱：
+NFA\Administrator
+
+密碼：
+1qaz@WSX
+
+點選【確認】。
+
+22. 跳出成功加入網域畫面後：
+
+點選【確認】
+
+回到「電腦名稱／網域變更」畫面後再點選【確認】。
+
+23. 系統要求重新開機時：
+
+點選【確認】
+
+電腦重新開機。
+
+
+【五、使用網域帳號登入】
+
+24. 登入畫面點選：
+
+其他使用者
+
+輸入：
+
+使用者名稱：
+NFA\User
+
+密碼：
+不用輸入
+
+直接登入。
+
+25. 登入後確認帳號顯示：
+
+User@nfa.gov.tw
+
+
+【六、解除安裝預載 Office】
+
+26. 解除安裝：
+
+Microsoft 365（Office）
+
+27. 在開始功能表找到：
+
+OneNote
+
+右鍵 → 解除安裝
+
+28. 進入：
+
+設定
+→ 應用程式
+→ 已安裝的應用程式
+
+確認：
+
+Microsoft OneNote - zh-tw
+16.0.17328.20206
+
+是否已移除。
+
+若未移除則再解除安裝一次。
+
+29. 若跳出 UAC：
+
+點選【是】。
+
+30. 跳出解除安裝確認：
+
+點選【解除安裝】。
+
+
+【七、複製公司軟體安裝包】
+
+31. 開啟：
+
+本機
+→ 網路位置
+→ public (\\nfa.gov.tw) (W:)
+
+若沒有此磁碟機，請自行新增網路磁碟機。
+
+32. 找到：
+
+Software
+
+整個複製到：
+
+下載（Downloads）
+
+資料夾內。
+
+33. 進入：
+
+下載
+→ Software
+
+點擊位址列後按右鍵。
+
+選擇：
+
+終端機（系統管理員）
+
+34. 跳出 UAC：
+
+點選【是】。
+
+35. 開啟 PowerShell 視窗。
+
+36. 輸入：
+
+cd .\Downloads\Software\
+
+37. 再輸入：
+
+.\03-s_000.cmd
+
+按 Enter。
+
+38. 若出現：
+
+請按任意鍵繼續...
+
+再按一次 Enter。
+
+39. 等待系統開始自動安裝。
+
+
+【八、安裝完成檢查】
+
+40. 進入：
+
+設定
+→ 藍牙與裝置
+→ 印表機與掃描器
+
+確認下列裝置已建立：
+
+Microsoft Print to PDF
+Printer01
+Printer02
+Printer03
+Printer04
+Printer05
+
+41. 檢查桌面是否出現：
+
+Avaya Workplace
+Google Chrome
+OpenOffice 4.1.15
+VLC media player
+LINE
+Webex
+
+42. 開啟：
+
+開始功能表
+→ 所有應用程式
+
+43. 確認 Office 主程式存在：
+
+Microsoft Office 2013
+Access 2013
+Excel 2013
+OneNote 2013
+Outlook 2013
+PowerPoint 2013
+Publisher 2013
+Word 2013
+
+44. 確認 Office 工具存在：
+
+Database Compare 2013
+Spreadsheet Compare 2013
+InfoPath Designer 2013
+InfoPath Filler 2013
+Lync 2013
+Lync 錄製管理員
+Office 2013 上傳中心
+Office 2013 語言喜好設定
+Office 2013 遙測記錄
+Office 2013 遙測儀表板
+商務用 OneDrive 2013
+傳送至 OneNote 2013
+
+45. 確認 Trend Micro 相關程式存在：
+
+Trend Micro Apex One Security Agent
+Security Agent
+Security Agent Readme
+Trend Vision One Endpoint Security
+
+
+【九、缺少項目時重新安裝】
+
+46. 若第 40～45 項有任何缺少：
+
+重新執行：
+
+cd .\Downloads\Software\
+.\03-s_000.cmd
+
+執行完成後重新檢查：
+
+40 → 41 → 42 → 43 → 44 → 45
+
+若第二次執行後仍然只有以下項目缺少：
+
+Trend Micro Apex One Security Agent
+Security Agent
+Security Agent Readme
+Trend Vision One Endpoint Security
+
+則直接進入：
+
+下載
+→ Software
+
+個別執行安裝：
+
+Trend Vision One Endpoint Security
+
+安裝完成後再次確認第 45 項內容是否全部存在。
