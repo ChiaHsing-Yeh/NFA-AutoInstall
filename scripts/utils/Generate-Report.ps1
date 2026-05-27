@@ -10,13 +10,13 @@ if (!(Test-Path $ReportFolder)) {
     New-Item -ItemType Directory -Path $ReportFolder | Out-Null
 }
 
-$WifiResult = .\scripts\Check-Wifi.ps1
-$DomainResult = .\scripts\Check-Domain.ps1
-$UserResult = .\scripts\Check-User.ps1
-$PrinterResult = .\scripts\Check-Printer.ps1
-$SoftwareResult = .\scripts\Check-Software.ps1
-$OfficeResult = .\scripts\Check-Office.ps1
-$TrendResult = .\scripts\Check-TrendMicro.ps1
+$WifiResult = .\scripts\Checks\Check-Wifi.ps1
+$DomainResult = .\scripts\Checks\Check-Domain.ps1
+$UserResult = .\scripts\Checks\Check-User.ps1
+$PrinterResult = .\scripts\Checks\Check-Printer.ps1
+$SoftwareResult = .\scripts\Checks\Check-Software.ps1
+$OfficeResult = .\scripts\Checks\Check-Office.ps1
+$TrendResult = .\scripts\Checks\Check-TrendMicro.ps1
 
 "================================" | Out-File $ReportFile -Encoding utf8
 "NFA Auto Install Report" | Out-File $ReportFile -Append -Encoding utf8

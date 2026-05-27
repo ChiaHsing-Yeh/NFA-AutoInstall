@@ -4,15 +4,15 @@ $Result = @()
 
 $AllResults = @()
 
-$AllResults += .\scripts\Check-Wifi.ps1
-$AllResults += .\scripts\Check-Domain.ps1
-$AllResults += .\scripts\Check-User.ps1
-$AllResults += .\scripts\Check-NetworkDrive.ps1
-$AllResults += .\scripts\Check-SoftwareFolder.ps1
-$AllResults += .\scripts\Check-Printer.ps1
-$AllResults += .\scripts\Check-Software.ps1
-$AllResults += .\scripts\Check-Office.ps1
-$AllResults += .\scripts\Check-TrendMicro.ps1
+$AllResults += .\scripts\Checks\Check-Wifi.ps1
+$AllResults += .\scripts\Checks\Check-Domain.ps1
+$AllResults += .\scripts\Checks\Check-User.ps1
+$AllResults += .\scripts\Checks\Check-NetworkDrive.ps1
+$AllResults += .\scripts\Checks\Check-SoftwareFolder.ps1
+$AllResults += .\scripts\Checks\Check-Printer.ps1
+$AllResults += .\scripts\Checks\Check-Software.ps1
+$AllResults += .\scripts\Checks\Check-Office.ps1
+$AllResults += .\scripts\Checks\Check-TrendMicro.ps1
 
 $OkItems = $AllResults | Where-Object { $_.ToString().Trim().StartsWith("[OK]")}
 $NgItems = $AllResults | Where-Object { $_.ToString().Trim().StartsWith("[NG]")}
