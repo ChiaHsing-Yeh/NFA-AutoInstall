@@ -2,11 +2,10 @@
 
 Write-Host ""
 Write-Host "================================"
-Write-Host "NFA Auto Install Main Check V2"
+Write-Host "NFA Auto Install Main Check V3"
 Write-Host "================================"
 Write-Host ""
 
-Write-Host ""
 Write-Host "Step 0: Admin Permission Check"
 Write-Host ""
 
@@ -28,64 +27,91 @@ if ($IsAdminFailed)
 }
 
 Write-Host ""
-Write-Host "Step 0: Admin Permission Check"
-Write-Host ""
-
-$AdminResult = .\scripts\utils\Check-Admin.ps1
-
-$AdminResult
-
-Write-Host ""
 Write-Host "Step 1: WiFi Check"
 Write-Host ""
 
-$WifiResult = .\scripts\Checks\Check-Wifi.ps1
+$WifiResult = .\scripts\checks\Check-Wifi.ps1
 $WifiResult
 
 Write-Host ""
 Write-Host "Step 2: Domain Check"
 Write-Host ""
 
-$DomainResult = .\scripts\Checks\Check-Domain.ps1
+$DomainResult = .\scripts\checks\Check-Domain.ps1
 $DomainResult
 
 Write-Host ""
 Write-Host "Step 3: User Check"
 Write-Host ""
 
-$UserResult = .\scripts\Checks\Check-User.ps1
+$UserResult = .\scripts\checks\Check-User.ps1
 $UserResult
 
 Write-Host ""
-Write-Host "Step 4: Printer Check"
+Write-Host "Step 4: Network Drive Check"
 Write-Host ""
 
-$PrinterResult = .\scripts\Checks\Check-Printer.ps1
+$NetworkDriveResult = .\scripts\checks\Check-NetworkDrive.ps1
+$NetworkDriveResult
+
+$NetworkDriveFailed = $NetworkDriveResult | Where-Object {
+    $_.ToString().Trim().StartsWith("[NG]")
+}
+
+if ($NetworkDriveFailed)
+{
+    Write-Host ""
+    Write-Host "Network Drive not found. Trying to repair..."
+    Write-Host ""
+
+    $RepairNetworkDriveResult = .\scripts\repair\Repair-NetworkDrive.ps1
+    $RepairNetworkDriveResult
+
+    Write-Host ""
+    Write-Host "Re-check Network Drive"
+    Write-Host ""
+
+    $NetworkDriveResult = .\scripts\checks\Check-NetworkDrive.ps1
+    $NetworkDriveResult
+}
+
+Write-Host ""
+Write-Host "Step 5: Printer Check"
+Write-Host ""
+
+$PrinterResult = .\scripts\checks\Check-Printer.ps1
 $PrinterResult
 
 Write-Host ""
-Write-Host "Step 5: Software Check"
+Write-Host "Step 6: Software Check"
 Write-Host ""
 
-$SoftwareResult = .\scripts\Checks\Check-Software.ps1
+$SoftwareResult = .\scripts\checks\Check-Software.ps1
 $SoftwareResult
 
 Write-Host ""
-Write-Host "Step 6: Office Check"
+Write-Host "Step 7: Office Check"
 Write-Host ""
 
-$OfficeResult = .\scripts\Checks\Check-Office.ps1
+$OfficeResult = .\scripts\checks\Check-Office.ps1
 $OfficeResult
 
 Write-Host ""
-Write-Host "Step 7: Trend Micro Check"
+Write-Host "Step 8: Trend Micro Check"
 Write-Host ""
 
-$TrendResult = .\scripts\Checks\Check-TrendMicro.ps1
+$TrendResult = .\scripts\checks\Check-TrendMicro.ps1
 $TrendResult
 
 Write-Host ""
-Write-Host "Step 8: Generate Report"
+Write-Host "Step 9: Summary Check"
+Write-Host ""
+
+$SummaryResult = .\scripts\checks\Check-Summary.ps1
+$SummaryResult
+
+Write-Host ""
+Write-Host "Step 10: Generate Report"
 Write-Host ""
 
 .\scripts\utils\Generate-Report.ps1
