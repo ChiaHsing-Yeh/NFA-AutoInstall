@@ -2,7 +2,7 @@
 
 $Result = @()
 
-$InstallerPath = "$env:USERPROFILE\Downloads\Software\vlc-3.0.21-win64.exe"
+$InstallerPath = "$env:USERPROFILE\Downloads\Software\App\vlc-3.0.21-win64.exe"
 
 $Result += "========================="
 $Result += "Install VLC"
