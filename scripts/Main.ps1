@@ -6,6 +6,36 @@ Write-Host "NFA Auto Install Main Check V2"
 Write-Host "================================"
 Write-Host ""
 
+Write-Host ""
+Write-Host "Step 0: Admin Permission Check"
+Write-Host ""
+
+$AdminResult = .\scripts\utils\Check-Admin.ps1
+$AdminResult
+
+$IsAdminFailed = $AdminResult | Where-Object {
+    $_.ToString().Trim().StartsWith("[NG]")
+}
+
+if ($IsAdminFailed)
+{
+    Write-Host ""
+    Write-Host "This script requires Administrator permission."
+    Write-Host "Please restart VS Code or PowerShell as Administrator."
+    Write-Host ""
+    Write-Host "Process stopped."
+    return
+}
+
+Write-Host ""
+Write-Host "Step 0: Admin Permission Check"
+Write-Host ""
+
+$AdminResult = .\scripts\utils\Check-Admin.ps1
+
+$AdminResult
+
+Write-Host ""
 Write-Host "Step 1: WiFi Check"
 Write-Host ""
 
