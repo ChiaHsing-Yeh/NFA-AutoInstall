@@ -8,6 +8,7 @@ $SoftwareList = @(
     "VLC media player",
     "Webex",
     "OpenOffice"
+    "Avaya Workplace"
 )
 
 $InstalledPrograms = @()
