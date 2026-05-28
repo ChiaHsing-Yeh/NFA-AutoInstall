@@ -2,7 +2,7 @@
 
 $Result = @()
 
-$InstallerPath = "$env:USERPROFILE\Downloads\Software\App\ChromeStandaloneSetup64.exe"
+$InstallerPath = "$env:USERPROFILE\Downloads\Software\App\googlechromestandaloneenterprise64.msi"
 
 $Result += "========================="
 $Result += "Install Google Chrome"
@@ -43,9 +43,8 @@ try
 {
     $Result += "[INFO] Installing Google Chrome..."
 
-    Start-Process `
-        -FilePath $InstallerPath `
-        -ArgumentList "/silent /install" `
+    Start-Process msiexec.exe `
+        -ArgumentList "/i `"$InstallerPath`" /qn /norestart" `
         -Wait `
         -ErrorAction Stop
 
