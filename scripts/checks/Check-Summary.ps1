@@ -8,7 +8,10 @@ $ScriptFiles = Get-ChildItem ".\scripts\checks\Check-*.ps1"
 
 foreach ($Script in $ScriptFiles)
 {
-    if ($Script.Name -eq "Check-Summary.ps1")
+    if (
+        $Script.Name -eq "Check-Summary.ps1" -or
+        $Script.Name -eq "Check-PC.ps1"
+    )
     {
         continue
     }
