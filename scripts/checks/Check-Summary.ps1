@@ -4,34 +4,48 @@ $Result = @()
 
 $AllResults = @()
 
-$AllResults += .\scripts\Checks\Check-Wifi.ps1
-$AllResults += .\scripts\Checks\Check-Domain.ps1
-$AllResults += .\scripts\Checks\Check-User.ps1
-$AllResults += .\scripts\Checks\Check-NetworkDrive.ps1
-$AllResults += .\scripts\Checks\Check-SoftwareFolder.ps1
-$AllResults += .\scripts\Checks\Check-Printer.ps1
-$AllResults += .\scripts\Checks\Check-Software.ps1
-$AllResults += .\scripts\Checks\Check-Office.ps1
-$AllResults += .\scripts\Checks\Check-TrendMicro.ps1
+$ScriptFiles = Get-ChildItem ".\scripts\checks\Check-*.ps1"
 
-$OkItems = $AllResults | Where-Object { $_.ToString().Trim().StartsWith("[OK]")}
-$NgItems = $AllResults | Where-Object { $_.ToString().Trim().StartsWith("[NG]")}
+foreach ($Script in $ScriptFiles)
+{
+    if ($Script.Name -eq "Check-Summary.ps1")
+    {
+        continue
+    }
 
-$OkCount = $OkItems.Count
-$NgCount = $NgItems.Count
-$TotalCount = $OkCount + $NgCount
+    $Output = & $Script.FullName
+
+    $AllResults += $Output
+}
+
+$OKCount = ($AllResults | Where-Object {
+    $_ -match "^\[OK\]"
+}).Count
+
+$NGCount = ($AllResults | Where-Object {
+    $_ -match "^\[NG\]"
+}).Count
+
+$SKIPCount = ($AllResults | Where-Object {
+    $_ -match "^\[SKIP\]"
+}).Count
+
+$TotalCount = $OKCount + $NGCount + $SKIPCount
 
 $Result += "========================="
 $Result += "Summary Check"
 $Result += "========================="
+
 $Result += "Total Check Items: $TotalCount"
-$Result += "OK Count: $OkCount"
-$Result += "NG Count: $NgCount"
+$Result += "OK Count: $OKCount"
+$Result += "NG Count: $NGCount"
+$Result += "SKIP Count: $SKIPCount"
+
 $Result += ""
 
-if ($NgCount -eq 0)
+if ($NGCount -eq 0)
 {
-    $Result += "[PASS] Device Ready"
+    $Result += "[PASS] Device Check Passed"
 }
 else
 {
@@ -39,7 +53,11 @@ else
     $Result += ""
     $Result += "Missing / Failed Items:"
 
-    foreach ($Item in $NgItems)
+    $NGItems = $AllResults | Where-Object {
+        $_ -match "^\[NG\]"
+    }
+
+    foreach ($Item in $NGItems)
     {
         $Result += "- $Item"
     }
