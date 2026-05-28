@@ -10,9 +10,18 @@ $SoftwareList = @(
     "OpenOffice"
 )
 
-$InstalledPrograms = Get-ItemProperty `
-HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* ,
-HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* `
+$InstalledPrograms = @()
+
+$InstalledPrograms += Get-ItemProperty `
+"HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*" `
+-ErrorAction SilentlyContinue
+
+$InstalledPrograms += Get-ItemProperty `
+"HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*" `
+-ErrorAction SilentlyContinue
+
+$InstalledPrograms += Get-ItemProperty `
+"HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\*" `
 -ErrorAction SilentlyContinue
 
 $Result += "========================="
