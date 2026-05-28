@@ -2,6 +2,19 @@
 
 $Result = @()
 
+$Result += "========================="
+$Result += "WiFi Check"
+$Result += "========================="
+
+$ComputerModel = (Get-CimInstance Win32_ComputerSystem).Model
+
+if ($ComputerModel -match "Virtual|VirtualBox|VMware")
+{
+    $Result += "[SKIP] Running inside VM"
+    $Result += "WiFi check skipped because VM uses virtual network adapter."
+    return $Result
+}
+
 $ExpectedSSID = "NFA"
 
 $WifiInfo = netsh wlan show interfaces
@@ -15,10 +28,6 @@ $CurrentSSID = ""
 if ($CurrentSSIDLine) {
     $CurrentSSID = ($CurrentSSIDLine -split ":", 2)[1].Trim()
 }
-
-$Result += "========================="
-$Result += "WiFi Check"
-$Result += "========================="
 
 if ($CurrentSSID -eq $ExpectedSSID)
 {
