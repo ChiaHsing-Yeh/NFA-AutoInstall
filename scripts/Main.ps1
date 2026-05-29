@@ -89,6 +89,53 @@ Write-Host ""
 $SoftwareResult = .\scripts\checks\Check-Software.ps1
 $SoftwareResult
 
+$SoftwareInstallMap = @{
+    "Google Chrome"    = ".\scripts\install\Install-Chrome.ps1"
+    "LINE"             = ".\scripts\install\Install-LINE.ps1"
+    "VLC media player" = ".\scripts\install\Install-VLC.ps1"
+    "Webex"            = ".\scripts\install\Install-Webex.ps1"
+    "OpenOffice"       = ".\scripts\install\Install-OpenOffice.ps1"
+    "Avaya Workplace"  = ".\scripts\install\Install-AvayaWorkplace.ps1"
+}
+
+$MissingSoftware = $SoftwareResult | Where-Object {
+    $_.ToString().Trim().StartsWith("[NG]")
+}
+
+if ($MissingSoftware)
+{
+    Write-Host ""
+    Write-Host "Missing software found. Trying to install..."
+    Write-Host ""
+
+    foreach ($Item in $MissingSoftware)
+    {
+        $SoftwareName = $Item.ToString().Replace("[NG]", "").Trim()
+
+        if ($SoftwareInstallMap.ContainsKey($SoftwareName))
+        {
+            Write-Host ""
+            Write-Host "Installing: $SoftwareName"
+            Write-Host ""
+
+            $InstallScript = $SoftwareInstallMap[$SoftwareName]
+            $InstallResult = & $InstallScript
+            $InstallResult
+        }
+        else
+        {
+            Write-Host "[WARN] No install script found for: $SoftwareName"
+        }
+    }
+
+    Write-Host ""
+    Write-Host "Re-check Software"
+    Write-Host ""
+
+    $SoftwareResult = .\scripts\checks\Check-Software.ps1
+    $SoftwareResult
+}
+
 Write-Host ""
 Write-Host "Step 7: Office Check"
 Write-Host ""
