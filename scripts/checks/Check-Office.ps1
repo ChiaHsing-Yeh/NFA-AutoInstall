@@ -2,39 +2,46 @@
 
 $Result = @()
 
-$OfficeList = @(
-    "Access"
-    "Excel"
-    "OneNote"
-    "Outlook"
-    "PowerPoint"
-    "Publisher"
-    "Word"
-)
+$OfficeApps = @{
+    "Access"     = "MSACCESS.EXE"
+    "Excel"      = "EXCEL.EXE"
+    "OneNote"    = "ONENOTE.EXE"
+    "Outlook"    = "OUTLOOK.EXE"
+    "PowerPoint" = "POWERPNT.EXE"
+    "Publisher"  = "MSPUB.EXE"
+    "Word"       = "WINWORD.EXE"
+}
 
-$InstalledPrograms = Get-ItemProperty `
-HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* ,
-HKLM:\Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* `
--ErrorAction SilentlyContinue
+$OfficePaths = @(
+    "$env:ProgramFiles\Microsoft Office\root\Office16",
+    "${env:ProgramFiles(x86)}\Microsoft Office\root\Office16"
+)
 
 $Result += "========================="
 $Result += "Office Check"
 $Result += "========================="
 
-foreach ($Office in $OfficeList)
+foreach ($App in $OfficeApps.Keys)
 {
-    $Found = $InstalledPrograms |
-        Where-Object {
-            $_.DisplayName -like "*$Office*"
+    $ExeName = $OfficeApps[$App]
+    $Found = $false
+
+    foreach ($Path in $OfficePaths)
+    {
+        if (Test-Path (Join-Path $Path $ExeName))
+        {
+            $Found = $true
+            break
         }
+    }
 
     if ($Found)
     {
-        $Result += "[OK] $Office"
+        $Result += "[OK] $App"
     }
     else
     {
-        $Result += "[NG] $Office"
+        $Result += "[NG] $App"
     }
 }
 
